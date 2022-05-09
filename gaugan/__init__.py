@@ -26,13 +26,13 @@ def processImage(image, style = 'random', url = None):
 	name = ''.join(random.choices(string.ascii_lowercase + string.digits, k=20))
 
 	# send map img to server
-	requests.post(url + 'nvidia_gaugan_submit_map', data = {
+	requests.post(url + 'gaugan2_receive_output', data = {
 		'imageBase64': imgb64,
 		'name': name
 	})
 
 	# get generated img from server
-	r = requests.post(url + 'nvidia_gaugan_receive_image', stream = True, data = {
+	r = requests.post(url + 'gaugan2_receive_image', stream = True, data = {
 		'name': name,
 		'style_name': str(style)
 	})
